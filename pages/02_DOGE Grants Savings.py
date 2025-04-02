@@ -147,12 +147,17 @@ with row2_col2:
     st.markdown("#### Cancellations by Weekday")
     weekday_counts = df["weekday"].value_counts().reindex(
         ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    ).fillna(0)
+    ).fillna(0).reset_index()
+
+    # Rename columns so they can be referenced correctly
+    weekday_counts.columns = ["weekday", "count"]
+
+    # Now use the new column names for plotting
     fig2 = px.bar(
-        weekday_counts.reset_index(),
-        x="index",
-        y="weekday",
-        labels={"index": "Weekday", "weekday": "Cancellations"},
+        weekday_counts,
+        x="weekday",
+        y="count",
+        labels={"weekday": "Weekday", "count": "Cancellations"},
         title="Cancellations by Weekday",
         height=400
     )
