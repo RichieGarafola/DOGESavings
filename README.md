@@ -6,6 +6,10 @@
 
 ---
 
+https://dogesavings.streamlit.app/
+
+---
+
 ## 💡 What Makes It an End-to-End Pipeline?
 
 This solution automates the entire analytics lifecycle:
