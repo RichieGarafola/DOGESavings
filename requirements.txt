@@ -3,3 +3,4 @@ pandas>=2.2.0
 requests>=2.31.0
 plotly>=5.18.0
 reportlab>=4.0.8
+kaleido>=0.2.1
