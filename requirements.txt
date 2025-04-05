@@ -4,5 +4,3 @@ requests>=2.31.0
 plotly>=5.18.0
 reportlab>=4.0.8
 kaleido>=0.2.1
-fuzzywuzzy>=0.18.0
-python-Levenshtein>=0.12.2  # optional performance boost
