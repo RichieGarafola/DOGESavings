@@ -67,7 +67,8 @@ if "agency" in df.columns:
     if agencies:
         df = df[df["agency"].isin(agencies)]
         
-export_charts = st.sidebar.checkbox("📦 Export Charts for PDF?")
+export_charts = True  # Always export charts
+
 
 # --- Metrics ---
 total_savings = df["savings"].sum()

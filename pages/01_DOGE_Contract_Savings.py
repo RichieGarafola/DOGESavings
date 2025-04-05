@@ -14,6 +14,7 @@ from reportlab.lib.colors import HexColor
 import plotly.io as pio
 import re
 from fuzzywuzzy import fuzz
+import os
 
 st.set_page_config(page_title="DOGE Contract Savings", layout="wide")
 
@@ -75,7 +76,7 @@ df = get_contract_savings()
 st.sidebar.header("🔍 Filter Data")
 agencies = st.sidebar.multiselect("Select Agencies", options=df["agency"].dropna().unique())
 vendors = st.sidebar.multiselect("Select Vendors", options=df["vendor_normalized"].dropna().unique())
-export_charts = st.sidebar.checkbox("📦 Export Charts for PDF?")
+export_charts = True  # Always export charts
 
 if agencies:
     df = df[df["agency"].isin(agencies)]
@@ -206,7 +207,9 @@ with col4:
 st.markdown("---")
 st.markdown("### 📄 Downloadable PDF Report")
 
-pdf_output_path = f"DOGE_Contract_Summary_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf"
+pdf_output_path = os.path.join("/tmp", f"DOGE_Contract_Summary_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf")
+if export_charts:
+    st.write("🧾 Exporting charts:", list(chart_images.keys()))
 c = canvas.Canvas(pdf_output_path, pagesize=LETTER)
 width, height = LETTER
 margin = 50
