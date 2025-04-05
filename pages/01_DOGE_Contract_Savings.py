@@ -132,9 +132,6 @@ def render_and_export_chart(fig, caption, key):
             chart_images[key] = buffer
         except Exception as e:
             st.error(f"❌ Error exporting chart '{key}': {e}")
-        else:
-            st.success(f"✅ Chart '{key}' exported successfully.")
-
 
 st.markdown("### 📊 Visualizations")
 col1, col2 = st.columns(2)
@@ -207,9 +204,7 @@ with col4:
 st.markdown("---")
 st.markdown("### 📄 Downloadable PDF Report")
 
-pdf_output_path = os.path.join("/tmp", f"DOGE_Contract_Summary_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf")
-if export_charts:
-    st.write("🧾 Exporting charts:", list(chart_images.keys()))
+pdf_output_path = f"DOGE_Contract_Summary_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf"
 c = canvas.Canvas(pdf_output_path, pagesize=LETTER)
 width, height = LETTER
 margin = 50
